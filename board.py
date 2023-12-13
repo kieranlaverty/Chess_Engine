@@ -40,7 +40,11 @@ class board():
         return occupied
 
     def legal_moves(self, square):
-        pass
+        placement = self.get_square(square)
+        occupied = self.occupied_sq()
+        possible = self.b[placement[0]][placement[1]].legal_moves(placement, occupied)
+        return possible
+
     
     def get_square(self, square):
         if square[0] == "a":
@@ -65,6 +69,29 @@ class board():
 
         return (rank, file)
     
+    def get_square_notation(self, square):
+        if square[0] == 0:
+            file = "a"
+        elif square[0] == 1:
+            file = "b"
+        elif square[0] == 2:
+            file = "c"
+        elif square[0] == 3:
+            file = "d"
+        elif square[0] == 4:
+            file = "e"
+        elif square[0] == 5:
+            file = "f"
+        elif square[0] == 6:
+            file = "g"
+        elif square[0] == 7:
+            file = "h"
+        
+
+        rank = int(square[1]) + 1
+
+        return file + str(rank)
+
     #This function prints out the board in a readable format
     def print_board(self):
         for i in self.b:

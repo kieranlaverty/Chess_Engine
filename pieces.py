@@ -15,9 +15,19 @@ class Pawn():
     def __str__ (self) -> str:
         return self.color + "p"
     
-    def color(self):
-        return self.color
-    
+    def legal_moves(self, placement, occupied_sq):
+        adjustment = 1
+        if self.color == "w":
+            adjustment *= -1
+        
+        possible_moves = []
+
+        if occupied_sq[placement[0] + 1*adjustment][placement[1]] == "0":
+            possible_moves.append((placement[0] + 1*adjustment,placement[1]))
+            if occupied_sq[placement[0] + 2*adjustment][placement[1]] == "0":
+                possible_moves.append((placement[0] + 2 * adjustment, placement[1]))
+        
+        return possible_moves
 
 class Rook():
     def __init__(self, color) -> None:

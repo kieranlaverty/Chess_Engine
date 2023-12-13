@@ -14,7 +14,7 @@ import board as b
 def main():
     board = b.board()
     board.set_board()
-    print(board.get_square('e4'))
+    print(board.legal_moves('e2'))
 
 
 if __name__ == "__main__":
