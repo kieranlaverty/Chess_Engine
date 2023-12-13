@@ -15,6 +15,7 @@ def main():
     board = b.board()
     board.set_board()
     board.print_board()
+    print(board.occupied_sq())
 
 
 if __name__ == "__main__":
