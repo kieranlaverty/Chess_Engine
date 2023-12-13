@@ -6,37 +6,65 @@ class board():
 
     #This function set the board in the initial starting position
     def set_board(self):
-        self.b[1] = [ p.Pawn("w") for j in range(8)] 
-        self.b[0][0] = p.Rook("w")
-        self.b[0][7] = p.Rook("w")
-        self.b[0][1] = p.Knight("w")
-        self.b[0][6] = p.Knight("w")
-        self.b[0][2] = p.Bishop("w")
-        self.b[0][5] = p.Bishop("w")
-        self.b[0][3] = p.Queen("w")
-        self.b[0][4] = p.King("w")
+        self.b[6] = [ p.Pawn("w") for j in range(8)] 
+        self.b[7][0] = p.Rook("w")
+        self.b[7][7] = p.Rook("w")
+        self.b[7][1] = p.Knight("w")
+        self.b[7][6] = p.Knight("w")
+        self.b[7][2] = p.Bishop("w")
+        self.b[7][5] = p.Bishop("w")
+        self.b[7][3] = p.Queen("w")
+        self.b[7][4] = p.King("w")
 
-        self.b[6] = [ p.Pawn("b") for i in range(8)]
-        self.b[7][0] = p.Rook("b")
-        self.b[7][7] = p.Rook("b")
-        self.b[7][1] = p.Knight("b")
-        self.b[7][6] = p.Knight("b")
-        self.b[7][2] = p.Bishop("b")
-        self.b[7][5] = p.Bishop("b")
-        self.b[7][3] = p.Queen("b")
-        self.b[7][4] = p.King("b")
+        self.b[1] = [ p.Pawn("b") for i in range(8)]
+        self.b[0][0] = p.Rook("b")
+        self.b[0][7] = p.Rook("b")
+        self.b[0][1] = p.Knight("b")
+        self.b[0][6] = p.Knight("b")
+        self.b[0][2] = p.Bishop("b")
+        self.b[0][5] = p.Bishop("b")
+        self.b[0][3] = p.Queen("b")
+        self.b[0][4] = p.King("b")
 
-    #retuns an list with 1 being occupied and 0 being unoccupied
+    #retuns an list with 1 being occupied by white, 2 if by black, and 0 being unoccupied
     def occupied_sq(self):
         occupied = [["0" for _ in range(8)]for i in range(8)]
         for i in range(8):
             for j in range(8):
                 if self.b[i][j] != "0":
-                    occupied[i][j] = "1"
+                    if self.b[i][j].color == "w":
+                        occupied[i][j] = "1"
+                    else:
+                        occupied[i][j] = "2"
         
         return occupied
 
+    def legal_moves(self, square):
+        pass
+    
+    def get_square(self, square):
+        if square[0] == "a":
+            file = 0
+        elif square[0] == "b":
+            file = 1
+        elif square[0] == "c":
+            file = 2 
+        elif square[0] == "d":
+            file = 3
+        elif square[0] == "e":
+            file = 4
+        elif square[0] == "f":
+            file = 5
+        elif square[0] == "g":
+            file = 6
+        elif square[0] == "h":
+            file = 7
+        
 
+        rank = int(square[1]) - 1
+
+        return (rank, file)
+    
     #This function prints out the board in a readable format
     def print_board(self):
         for i in self.b:

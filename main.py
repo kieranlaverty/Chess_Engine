@@ -14,8 +14,7 @@ import board as b
 def main():
     board = b.board()
     board.set_board()
-    board.print_board()
-    print(board.occupied_sq())
+    print(board.get_square('e4'))
 
 
 if __name__ == "__main__":
