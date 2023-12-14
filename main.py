@@ -17,7 +17,7 @@ def main():
     board.print_board()
     print("")
     board.print_occupied()
-    print(board.legal_moves_readable("d5"))
+    board.legal_moves_readable("e4")
 
 
 

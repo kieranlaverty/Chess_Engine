@@ -40,7 +40,7 @@ class Pawn():
         value = occupied_sq[placement[0] + 1 * adjustment][placement[1] + 1 ]
         print([placement[0] + 1 * adjustment],[placement[1] + 1 ])
         if (("1" == value and self.color == "b") or("2" == value and self.color == "w")):
-            possible_moves.append((placement[0] - 1,placement[1] + 1 * adjustment))
+            possible_moves.append((placement[0] + 1 * adjustment, placement[1] + 1))
         
         return possible_moves
 

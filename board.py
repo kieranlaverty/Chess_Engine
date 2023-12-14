@@ -155,7 +155,7 @@ class board():
         elif square[1] == 7:
             file = "h"
 
-        rank =   square[0]  + 1
+        rank =   square[0]
 
         return file + str(rank)
 
@@ -191,6 +191,6 @@ class board():
         moves = self.legal_moves(placement)
         if len(moves) > 0:
             for m in moves:
-                print(self.get_square_notation(m))
+                print(m, self.get_square_notation(m))
         else:
             print("no possible moves")
