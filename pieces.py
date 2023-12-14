@@ -31,15 +31,11 @@ class Pawn():
                     possible_moves.append((placement[0] - 2 * adjustment, placement[1]))
         
         #pawn capture normal
-        print(placement)
-
         value = occupied_sq[placement[0] + 1 * adjustment][placement[1] - 1 ]
-        print([placement[0] + 1 * adjustment],[placement[1] - 1 ])
         if (("1" == value and self.color == "b") or("2" == value and self.color == "w")):
             possible_moves.append((placement[0] + 1 * adjustment, placement[1] - 1))
         
         value = occupied_sq[placement[0] + 1 * adjustment][placement[1] + 1 ]
-        print([placement[0] + 1 * adjustment],[placement[1] + 1 ])
         if (("1" == value and self.color == "b") or("2" == value and self.color == "w")):
             possible_moves.append((placement[0] + 1 * adjustment, placement[1] + 1))
         

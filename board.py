@@ -4,8 +4,11 @@ class board():
 
     #this is the constructor
     #create a var b to hold the chess board
+    #variable to hold prior position
     def __init__(self):
         self.b = [["0" for _ in range(8)]for i in range(8)]
+        self.prior_position = self.b
+        return
 
     #This function set the board in the initial starting position
     """
@@ -39,6 +42,10 @@ class board():
         self.b[0][5] = p.Bishop("b")
         self.b[0][3] = p.Queen("b")
         self.b[0][4] = p.King("b")
+
+        self.prior_position = self.b
+
+        return
 
     #This function sets a board to a custom position given a string
     def set_position(self, position):
@@ -86,7 +93,9 @@ class board():
                     elif square_list[i][j] == "k":
                         self.b[i][j] = p.King("b")
                     elif square_list[i][j] == "p":
-                        self.b[i][j] = p.Pawn("b")   
+                        self.b[i][j] = p.Pawn("b")  
+
+        return
 
     #retuns an list with 1 being occupied by white, 2 if by black, and 0 being unoccupied
     #white == 1, Black == 2, 0 == no piece
@@ -111,6 +120,13 @@ class board():
             possible = self.b[square[0]][square[1]].legal_moves(square, occupied)
             return possible
 
+    #given 2 places in the array and then move start location to finish location
+    def move_piece(self, start, finish):
+        holder = self.b[start[0]][start[1]]
+        self.b[start[0]][start[1]] = "0"
+        self.b[finish[0]][finish[1]] = holder
+        return
+    
     #given algebric notation of a square the board list location is returned
     #return (rank, file)
     def get_square(self, square):
@@ -194,3 +210,15 @@ class board():
                 print(m, self.get_square_notation(m))
         else:
             print("no possible moves")
+
+    #this will move a piece given notation of starting and ending square
+    def move_piece_notation(self,start, finish):
+        start = self.get_square_notation(start)
+        finish = self.get_square_notation(finish)
+
+        self.move_piece(start, finish)
+
+        return
+
+
+    
