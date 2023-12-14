@@ -56,7 +56,7 @@ class Rook():
     def __str__ (self) -> str:
         return self.color + "r"
     
-    def legal_moves(self):
+    def legal_moves(self, placement, occupied_sq):
         pass
 
     def color(self):
