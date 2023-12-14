@@ -16,9 +16,10 @@ class Pawn():
         return self.color + "p"
     
     def legal_moves(self, placement, occupied_sq):
+        
         adjustment = 1
         if self.color == "w":
-            adjustment *= -1
+            adjustment *= 1
 
         
         possible_moves = []
@@ -30,13 +31,14 @@ class Pawn():
                     possible_moves.append((placement[0] + 2 * adjustment, placement[1]))
         
         #pawn capture normal
-        value = occupied_sq[placement[0] + 1][placement[1] - 1 * adjustment]
-        print([placement[0] + 1],[placement[1] + 1 * adjustment])
+        print(placement)
+        value = occupied_sq[placement[0] + 1 * adjustment][placement[1] - 1 ]
+        print([placement[0] + 1 * adjustment],[placement[1] - 1 ])
         if (("1" == value and self.color == "b") or("2" == value and self.color == "w")):
             possible_moves.append((placement[0] + 1,placement[1] + 1 * adjustment))
         
-        value = occupied_sq[placement[0] - 1][placement[1] + 1 * adjustment]
-        print([placement[0] - 1],[placement[1] + 1 * adjustment])
+        value = occupied_sq[placement[0] + 1 * adjustment][placement[1] + 1 ]
+        print([placement[0] + 1 * adjustment],[placement[1] + 1 ])
         if (("1" == value and self.color == "b") or("2" == value and self.color == "w")):
             possible_moves.append((placement[0] - 1,placement[1] + 1 * adjustment))
         

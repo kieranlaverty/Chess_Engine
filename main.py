@@ -13,7 +13,8 @@ import board as b
 
 def main():
     board = b.board()
-    board.set_position("rnbqkbnr/ppp1pppp/8/5p2/4P3/8/PPPP1PPP/RNBQKBNR")
+    board.set_position("rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR")
+    board.print_occupied()
     print(board.legal_moves("e4"))
 
 

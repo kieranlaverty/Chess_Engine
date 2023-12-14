@@ -1,10 +1,24 @@
 import pieces as p
 
 class board():
+
+    #this is the constructor
+    #create a var b to hold the chess board
     def __init__(self):
         self.b = [["0" for _ in range(8)]for i in range(8)]
 
     #This function set the board in the initial starting position
+    """
+    [
+    [a8, b8, c8, d8, e8, f8, g8, h8],
+    [a7, b7, c7, d7, e7, f7, g7, h7],
+    [a6, b6, c6, d6, e6, f6, g6, h6],
+    [a5, b5, c5, d5, e5, f5, g5, h5],
+    [a4, b4, c4, d4, e4, f4, g4, h4],
+    [a3, b3, c3, d3, e3, f3, g3, h3],
+    [a2, b2, c2, d2, e2, f2, g2, h2],
+    [a1, b1, c1, d1, e1, f1, g1, h1],
+    """
     def set_board(self):
         self.b[6] = [ p.Pawn("w") for j in range(8)] 
         self.b[7][0] = p.Rook("w")
@@ -76,6 +90,7 @@ class board():
                         self.b[i][j] = p.Pawn("b")   
 
     #retuns an list with 1 being occupied by white, 2 if by black, and 0 being unoccupied
+    #white == 1, Black == 2, 0 == no piece
     def occupied_sq(self):
         occupied = [["0" for _ in range(8)]for i in range(8)]
         for i in range(8):
@@ -88,6 +103,7 @@ class board():
         
         return occupied
 
+    #given a square a list is returned of all the posible square the piece could move
     def legal_moves(self, square):
         placement = self.get_square(square)
         occupied = self.occupied_sq()
@@ -96,7 +112,9 @@ class board():
         else:
             possible = self.b[placement[0]][placement[1]].legal_moves(placement, occupied)
             return possible
-  
+
+    #given algebric notation of a square the board list location is returned
+    #return (rank, file)
     def get_square(self, square):
         if square[0] == "a":
             file = 0
@@ -120,6 +138,7 @@ class board():
 
         return (rank, file)
     
+    #given the board list location algebric notation is returned for the square
     def get_square_notation(self, square):
         if square[1] == 0:
             file = "a"
@@ -151,6 +170,17 @@ class board():
                     rank = rank + j + " "
                     if j == "0":
                         rank = rank + " "
+                except:
+                    rank = rank + str(j) + " "
+
+            print(rank)
+    
+    def print_occupied(self):
+        for i in self.occupied_sq():
+            rank = ""
+            for j in i:
+                try:
+                    rank = rank + j + " "
                 except:
                     rank = rank + str(j) + " "
 
