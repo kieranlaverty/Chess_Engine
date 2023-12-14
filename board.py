@@ -56,7 +56,6 @@ class board():
             if len(holder) == 8:
                 square_list.append(holder)
                 holder = []  
-        square_list.reverse()
 
         for i in range(8):
             for j in range(8):
@@ -93,24 +92,23 @@ class board():
     #white == 1, Black == 2, 0 == no piece
     def occupied_sq(self):
         occupied = [["0" for _ in range(8)]for i in range(8)]
-        for i in range(8):
-            for j in range(8):
-                if self.b[i][j] != "0":
-                    if self.b[i][j].color == "w":
-                        occupied[i][j] = "1"
+        for rank in range(8):
+            for file in range(8):
+                if self.b[rank][file] != "0":
+                    if self.b[rank][file].color == "w":
+                        occupied[rank][file] = "1"
                     else:
-                        occupied[i][j] = "2"
+                        occupied[rank][file] = "2"
         
         return occupied
 
     #given a square a list is returned of all the posible square the piece could move
     def legal_moves(self, square):
-        placement = self.get_square(square)
         occupied = self.occupied_sq()
-        if (self.b[placement[0]][placement[1]] == "0"):
+        if (self.b[square[0]][square[1]] == "0"):
             return "Unoccupied Square"
         else:
-            possible = self.b[placement[0]][placement[1]].legal_moves(placement, occupied)
+            possible = self.b[square[0]][square[1]].legal_moves(square, occupied)
             return possible
 
     #given algebric notation of a square the board list location is returned
@@ -134,7 +132,7 @@ class board():
             file = 7
         
 
-        rank = int(square[1]) - 1
+        rank = abs(int(square[1]) - 8)
 
         return (rank, file)
     
@@ -175,6 +173,7 @@ class board():
 
             print(rank)
     
+    #This function prints out the occupied sq on the board in a readable format
     def print_occupied(self):
         for i in self.occupied_sq():
             rank = ""
@@ -185,3 +184,13 @@ class board():
                     rank = rank + str(j) + " "
 
             print(rank)
+
+    #This function prints out the playable moves in a readable format
+    def legal_moves_readable(self, square):
+        placement = self.get_square(square)
+        moves = self.legal_moves(placement)
+        if len(moves) > 0:
+            for m in moves:
+                print(self.get_square_notation(m))
+        else:
+            print("no possible moves")

@@ -19,7 +19,7 @@ class Pawn():
         
         adjustment = 1
         if self.color == "w":
-            adjustment *= 1
+            adjustment *= -1
 
         
         possible_moves = []

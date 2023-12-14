@@ -14,8 +14,10 @@ import board as b
 def main():
     board = b.board()
     board.set_position("rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR")
+    board.print_board()
+    print("")
     board.print_occupied()
-    print(board.legal_moves("e4"))
+    print(board.legal_moves_readable("d5"))
 
 
 
