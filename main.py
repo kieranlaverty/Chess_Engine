@@ -13,9 +13,8 @@ import board as b
 
 def main():
     board = b.board()
-    board.set_board()
-    for m in board.legal_moves("e2"):
-        print(board.get_square_notation(m))
+    board.set_position("rnbqkbnr/ppp1pppp/8/5p2/4P3/8/PPPP1PPP/RNBQKBNR")
+    print(board.legal_moves("e4"))
 
 
 

@@ -26,16 +26,19 @@ class Pawn():
         if occupied_sq[placement[0] + 1 * adjustment][placement[1]] == "0":
             possible_moves.append((placement[0] + 1 * adjustment, placement[1]))
             if occupied_sq[placement[0] + 2 * adjustment][placement[1]] == "0":
-                possible_moves.append((placement[0] + 2 * adjustment, placement[1]))
+                if ((self.color == "w" and placement[0] == 6) or (self.color == "b" and placement[0] == 1)):
+                    possible_moves.append((placement[0] + 2 * adjustment, placement[1]))
         
         #pawn capture normal
-        value = occupied_sq[placement[0] + 1][placement[1] + 1 * adjustment]
+        value = occupied_sq[placement[0] + 1][placement[1] - 1 * adjustment]
+        print([placement[0] + 1],[placement[1] + 1 * adjustment])
         if (("1" == value and self.color == "b") or("2" == value and self.color == "w")):
-            possible_moves.append(([placement[0] + 1][placement[1] + 1 * adjustment]))
+            possible_moves.append((placement[0] + 1,placement[1] + 1 * adjustment))
         
         value = occupied_sq[placement[0] - 1][placement[1] + 1 * adjustment]
+        print([placement[0] - 1],[placement[1] + 1 * adjustment])
         if (("1" == value and self.color == "b") or("2" == value and self.color == "w")):
-            possible_moves.append(([placement[0] - 1][placement[1] + 1 * adjustment]))
+            possible_moves.append((placement[0] - 1,placement[1] + 1 * adjustment))
         
         return possible_moves
 
@@ -54,6 +57,9 @@ class Rook():
     def __str__ (self) -> str:
         return self.color + "r"
     
+    def legal_moves(self):
+        pass
+
     def color(self):
         return self.color
     
@@ -72,6 +78,9 @@ class Knight():
     def __str__ (self) -> str:
         return self.color + "n"
     
+    def legal_moves(self):
+        pass
+
     def color(self):
         return self.color
     
@@ -89,6 +98,9 @@ class Bishop():
 
     def __str__ (self) -> str:
         return self.color + "b"
+
+    def legal_moves(self):
+        pass
 
     def color(self):
         return self.color
@@ -108,6 +120,9 @@ class Queen():
     def __str__ (self) -> str:
         return self.color + "q"
 
+    def legal_moves(self):
+        pass
+
     def color(self):
         return self.color
     
@@ -126,6 +141,9 @@ class King():
     def __str__ (self) -> str:
         return self.color + "k"
     
+    def legal_moves(self):
+        pass
+
     def color(self):
         return self.color
     

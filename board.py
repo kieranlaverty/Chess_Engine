@@ -26,6 +26,55 @@ class board():
         self.b[0][3] = p.Queen("b")
         self.b[0][4] = p.King("b")
 
+    #This function sets a board to a custom position given a string
+    def set_position(self, position):
+        square_list = []
+        holder = []
+        for s in position:
+            if s == "/":
+                pass
+            elif s.isnumeric():
+                for _ in range(int(s)):
+                    holder.append("0")
+            else:
+                holder.append(s)
+            
+            if len(holder) == 8:
+                square_list.append(holder)
+                holder = []  
+        square_list.reverse()
+
+        for i in range(8):
+            for j in range(8):
+                if square_list[i][j] == 0:
+                    pass
+                elif square_list[i][j].isupper():
+                    if square_list[i][j] == "R":
+                        self.b[i][j] = p.Rook("w")
+                    elif square_list[i][j] == "N":
+                        self.b[i][j] = p.Knight("w")
+                    elif square_list[i][j] == "B":
+                        self.b[i][j] = p.Bishop("w")
+                    elif square_list[i][j] == "Q":
+                        self.b[i][j] = p.Queen("w")
+                    elif square_list[i][j] == "K":
+                        self.b[i][j] = p.King("w")
+                    elif square_list[i][j] == "P":
+                        self.b[i][j] = p.Pawn("w")
+                elif square_list[i][j].isupper() == False:
+                    if square_list[i][j] == "r":
+                        self.b[i][j] = p.Rook("b")
+                    elif square_list[i][j] == "n":
+                        self.b[i][j] = p.Knight("b")
+                    elif square_list[i][j] == "b":
+                        self.b[i][j] = p.Bishop("b")
+                    elif square_list[i][j] == "q":
+                        self.b[i][j] = p.Queen("b")
+                    elif square_list[i][j] == "k":
+                        self.b[i][j] = p.King("b")
+                    elif square_list[i][j] == "p":
+                        self.b[i][j] = p.Pawn("b")   
+
     #retuns an list with 1 being occupied by white, 2 if by black, and 0 being unoccupied
     def occupied_sq(self):
         occupied = [["0" for _ in range(8)]for i in range(8)]
@@ -42,8 +91,11 @@ class board():
     def legal_moves(self, square):
         placement = self.get_square(square)
         occupied = self.occupied_sq()
-        possible = self.b[placement[0]][placement[1]].legal_moves(placement, occupied)
-        return possible
+        if (self.b[placement[0]][placement[1]] == "0"):
+            return "Unoccupied Square"
+        else:
+            possible = self.b[placement[0]][placement[1]].legal_moves(placement, occupied)
+            return possible
   
     def get_square(self, square):
         if square[0] == "a":
