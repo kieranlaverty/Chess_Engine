@@ -85,9 +85,8 @@ class board():
             file = "g"
         elif square[1] == 7:
             file = "h"
-        
 
-        rank = int(square[0]) + 1
+        rank =   square[0]  + 1
 
         return file + str(rank)
 

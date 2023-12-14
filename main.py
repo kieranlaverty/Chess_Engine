@@ -14,8 +14,9 @@ import board as b
 def main():
     board = b.board()
     board.set_board()
-    print(board.get_square_notation(board.legal_moves('e2')[0]))
-    print(board.get_square_notation(board.legal_moves('e2')[1]))
+    for m in board.legal_moves("e2"):
+        print(board.get_square_notation(m))
+
 
 
 if __name__ == "__main__":

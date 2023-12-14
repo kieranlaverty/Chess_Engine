@@ -19,13 +19,23 @@ class Pawn():
         adjustment = 1
         if self.color == "w":
             adjustment *= -1
+
         
         possible_moves = []
 
-        if occupied_sq[placement[0] + 1*adjustment][placement[1]] == "0":
-            possible_moves.append((placement[0] + 1*adjustment,placement[1]))
-            if occupied_sq[placement[0] + 2*adjustment][placement[1]] == "0":
+        if occupied_sq[placement[0] + 1 * adjustment][placement[1]] == "0":
+            possible_moves.append((placement[0] + 1 * adjustment, placement[1]))
+            if occupied_sq[placement[0] + 2 * adjustment][placement[1]] == "0":
                 possible_moves.append((placement[0] + 2 * adjustment, placement[1]))
+        
+        #pawn capture normal
+        value = occupied_sq[placement[0] + 1][placement[1] + 1 * adjustment]
+        if (("1" == value and self.color == "b") or("2" == value and self.color == "w")):
+            possible_moves.append(([placement[0] + 1][placement[1] + 1 * adjustment]))
+        
+        value = occupied_sq[placement[0] - 1][placement[1] + 1 * adjustment]
+        if (("1" == value and self.color == "b") or("2" == value and self.color == "w")):
+            possible_moves.append(([placement[0] - 1][placement[1] + 1 * adjustment]))
         
         return possible_moves
 
