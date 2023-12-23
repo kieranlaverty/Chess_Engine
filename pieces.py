@@ -57,10 +57,9 @@ class Rook():
         return self.color + "r"
     
     def legal_moves(self, placement, occupied_sq):
-        pass
+        #needs work
+        moves = [(x, placement[1]) for x in range(8)]
 
-    def color(self):
-        return self.color
     
 class Knight():
     def __init__(self, color) -> None:
